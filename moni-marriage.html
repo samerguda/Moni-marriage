@@ -1,104 +1,797 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp Message</title>
+    <title> French B1 200 verbs </title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --accent: #06b6d4;
+            --badge-en: #e0e7ff;
+            --badge-en-text: #3730a3;
+            --badge-fr: #fce7f3;
+            --badge-fr-text: #9d174d;
+        }
+
+        .dark-theme {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --accent: #22d3ee;
+            --badge-en: #312e81;
+            --badge-en-text: #c7d2fe;
+            --badge-fr: #831843;
+            --badge-fr-text: #fbcfe8;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+            transition: background-color 0.2s, border-color 0.2s, color 0.2s;
         }
 
-        .message-box {
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 20px 10px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
             padding: 20px;
-            max-width: 500px;
-            width: 100%;
-        }
-
-        .message {
-            margin-bottom: 20px;
-            padding: 10px;
-            background-color: #e5e5ea;
-            border-radius: 8px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
             position: relative;
         }
 
-        .message h3 {
-            margin: 0;
-            font-size: 16px;
-            color: #333;
+        header h1 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 8px;
         }
 
-        .message p {
-            margin: 5px 0;
-            font-size: 14px;
-            color: #666;
+        header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
-        .button-group {
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: var(--bg);
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover, .btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        /* View Modes */
+        .view-content {
+            display: none;
+        }
+
+        .view-content.active {
+            display: block;
+        }
+
+        /* Table View */
+        .table-container {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: right;
+        }
+
+        th, td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg);
+            color: var(--text-muted);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: var(--bg);
+        }
+
+        .ar-word {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .badge-en {
+            background: var(--badge-en);
+            color: var(--badge-en-text);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            display: inline-block;
+            direction: ltr;
+        }
+
+        .badge-fr {
+            background: var(--badge-fr);
+            color: var(--badge-fr-text);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            display: inline-block;
+            direction: ltr;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            padding: 5px;
+            font-size: 1rem;
+            margin-right: 5px;
+        }
+
+        .action-btn:hover {
+            color: var(--primary);
+        }
+
+        /* Cards View */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .verb-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 18px;
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .verb-card .card-header {
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
 
-        .button {
-            padding: 10px 15px;
-            font-size: 14px;
-            color: #fff;
-            background-color: #007bff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        .verb-card .card-id {
+            background: var(--bg);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .verb-card .card-body {
             text-align: center;
         }
 
-        .button:hover {
-            background-color: #0056b3;
+        .verb-card .ar-main {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .verb-card .translations {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .verb-card .card-footer {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--border);
+            padding-top: 10px;
+            margin-top: 5px;
+        }
+
+        /* Quiz View */
+        .quiz-container {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .quiz-question {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 20px 0;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .quiz-btn {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .quiz-btn:hover {
+            border-color: var(--primary);
+        }
+
+        .stats-bar {
+            text-align: center;
+            margin-top: 15px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+            th, td {
+                padding: 10px 8px;
+                font-size: 0.85rem;
+            }
+            .ar-word {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
-
 <body>
-    <div class="message-box">
-        <div class="message" id="messageContent">
-            <h3>WhatsApp Message</h3>
-            <p>النسخة كاملة بالعربي والفرنسي مع اوسبتيل</p>
-            <p>يكون فيها مذكور الزواج الا ول والطلاق يعني التصميم بالهامش انه مطلق مع حكم الطلاق مع اوسبتيل وشهادة عدم التعرض والاستحقاق</p>
-            <p>بالنسبة لك النسخةالكاملة جهة عربي وجهة فرنسي مع اوسبتيل مطلقة مع تصميص الطلاق بالعبادي ولكن بما انك مطلقة باحكامك لست بحاجة الى الحكم مطلقة</p>
-            <img src="4.jpeg" width="200px" height="" alt="">
+
+    <div class="container">
+        <header>
+            <button class="theme-toggle" id="themeToggle" title="تبديل الوضع"><i class="fa-solid fa-moon"></i></button>
+            <h1><i class="fa-solid fa-book-bookmark"></i> معجم الأفعال التفاعلي</h1>
+            <p>180 فعلاً مترجماً ومشكولاً باللغات: العربية، الإنجليزية، والفرنسية</p>
+        </header>
+
+        <!-- Controls Section -->
+        <div class="controls">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="ابحث عن فعل (عربي، إنجليزي، فرنسي)...">
+            </div>
+
+            <div class="btn-group">
+                <button class="btn active" onclick="switchView('table')"><i class="fa-solid fa-table"></i> جدول</button>
+                <button class="btn" onclick="switchView('cards')"><i class="fa-solid fa-grip"></i> بطاقات</button>
+                <button class="btn" onclick="switchView('quiz')"><i class="fa-solid fa-gamepad"></i> اختبار</button>
+            </div>
         </div>
-        <div class="button-group">
-            <button class="button" onclick="copyContent()">Copy Content</button>
-            <button class="button" onclick="printPage()">Print</button>
+
+        <div class="stats-bar" id="statsBar">
+            عرض <span id="visibleCount">180</span> من إجمالي 180 فعل
+        </div>
+
+        <!-- Table View -->
+        <div id="tableView" class="view-content active" style="margin-top: 15px;">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50px;">#</th>
+                            <th>الفعل (العربية)</th>
+                            <th>English</th>
+                            <th>Français</th>
+                            <th style="width: 90px; text-align: center;">أدوات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Cards View -->
+        <div id="cardsView" class="view-content" style="margin-top: 15px;">
+            <div class="cards-grid" id="cardsGrid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- Quiz View -->
+        <div id="quizView" class="view-content" style="margin-top: 15px;">
+            <div class="quiz-container">
+                <div style="font-weight: bold; color: var(--text-muted)">ما هو معنى الفعل التالي؟</div>
+                <div class="quiz-question" id="quizQuestion">---</div>
+                <div class="quiz-options" id="quizOptions"></div>
+                <button class="btn" id="nextQuizBtn" onclick="generateQuiz()" style="display:none; margin: 0 auto;">الفعل التالي <i class="fa-solid fa-arrow-left"></i></button>
+                <div id="quizFeedback" style="margin-top: 15px; font-weight: bold;"></div>
+            </div>
         </div>
     </div>
 
     <script>
-        function copyContent() {
-            const content = document.getElementById('messageContent').innerText;
-            navigator.clipboard.writeText(content)
-                .then(() => {
-                    alert('Content copied to clipboard!');
-                })
-                .catch(err => {
-                    console.error('Error in copying text: ', err);
-                });
+        // Data containing all 180 verbs
+        const verbsData = [
+            {id: 1, ar: "يَفُوزُ", en: "win", fr: "gagner"},
+            {id: 2, ar: "يَخْسَرُ", en: "lose (a game)", fr: "perdre"},
+            {id: 3, ar: "يَرْبَحُ", en: "earn, profit", fr: "gagner"},
+            {id: 4, ar: "يَقْضِي", en: "spend (time)", fr: "passer"},
+            {id: 5, ar: "يَقْضِي عَلَى", en: "eliminate", fr: "éliminer"},
+            {id: 6, ar: "يُنافس", en: "compete", fr: "concourir"},
+            {id: 7, ar: "يَبْحَثُ", en: "search", fr: "chercher"},
+            {id: 8, ar: "يَبْحَثُ عَنْ", en: "look for", fr: "chercher"},
+            {id: 9, ar: "يَجْمَعُ", en: "collect", fr: "collecter"},
+            {id: 10, ar: "يُفَرِّقُ", en: "separate", fr: "séparer"},
+            {id: 11, ar: "يَقِيسُ", en: "measure", fr: "mesurer"},
+            {id: 12, ar: "يَزِنُ", en: "weigh", fr: "peser"},
+            {id: 13, ar: "يَعُدُّ", en: "count", fr: "compter"},
+            {id: 14, ar: "يُقَارِنُ", en: "compare", fr: "comparer"},
+            {id: 15, ar: "يَخْتَارُ", en: "choose", fr: "choisir"},
+            {id: 16, ar: "يُفَضِّلُ", en: "prefer", fr: "préférer"},
+            {id: 17, ar: "يُقَرِّرُ", en: "decide", fr: "décider"},
+            {id: 18, ar: "يُغَيِّرُ", en: "change", fr: "changer"},
+            {id: 19, ar: "يُصْلِحُ", en: "repair", fr: "réparer"},
+            {id: 20, ar: "يَكْسِرُ", en: "break", fr: "casser"},
+            {id: 21, ar: "يَبْنِي", en: "build", fr: "construire"},
+            {id: 22, ar: "يُدَمِّرُ", en: "destroy", fr: "détruire"},
+            {id: 23, ar: "يَرْسُمُ", en: "draw", fr: "dessiner"},
+            {id: 24, ar: "يُلَوِّنُ", en: "color", fr: "colorier"},
+            {id: 25, ar: "يُصَوِّرُ", en: "photograph", fr: "photographier"},
+            {id: 26, ar: "يَطْبَعُ", en: "print", fr: "imprimer"},
+            {id: 27, ar: "يَنْسَخُ", en: "copy", fr: "copier"},
+            {id: 28, ar: "يَلْصَقُ", en: "stick, attach", fr: "coller"},
+            {id: 29, ar: "يَقُصُّ", en: "cut", fr: "couper"},
+            {id: 30, ar: "يَرْمِي", en: "throw", fr: "jeter"},
+            {id: 31, ar: "يَلْتَقِطُ", en: "pick up", fr: "ramasser"},
+            {id: 32, ar: "يَدْفُنُ", en: "bury", fr: "enterrer"},
+            {id: 33, ar: "يَزْرَعُ", en: "plant", fr: "planter"},
+            {id: 34, ar: "يَحْصُدُ", en: "harvest", fr: "récolter"},
+            {id: 35, ar: "يَسْقِي", en: "water (plants)", fr: "arroser"},
+            {id: 36, ar: "يَنْمُو", en: "grow", fr: "grandir"},
+            {id: 37, ar: "يَذُوبُ", en: "melt", fr: "fondre"},
+            {id: 38, ar: "يَجِفُّ", en: "dry", fr: "sécher"},
+            {id: 39, ar: "يَبُلُّ", en: "become wet", fr: "se mouiller"},
+            {id: 40, ar: "يَمْلَأُ", en: "fill", fr: "remplir"},
+            {id: 41, ar: "يُفْرِغُ", en: "empty", fr: "vider"},
+            {id: 42, ar: "يَرْتَدِي", en: "put on (clothes)", fr: "mettre"},
+            {id: 43, ar: "يَخْلَعُ", en: "take off (clothes)", fr: "enlever"},
+            {id: 44, ar: "يَرْبُطُ", en: "tie", fr: "attacher"},
+            {id: 45, ar: "يَفُكُّ", en: "untie", fr: "détacher"},
+            {id: 46, ar: "يُغَلِّفُ", en: "wrap", fr: "envelopper"},
+            {id: 47, ar: "يَفْتَرِشُ", en: "spread out", fr: "étaler"},
+            {id: 48, ar: "يَطْوِي", en: "fold", fr: "plier"},
+            {id: 49, ar: "يَكْوِي", en: "iron", fr: "repasser"},
+            {id: 50, ar: "يَخِيطُ", en: "sew", fr: "coudre"},
+            {id: 51, ar: "يَحْلِقُ", en: "shave", fr: "se raser"},
+            {id: 52, ar: "يُمَشِّطُ", en: "comb", fr: "se peigner"},
+            {id: 53, ar: "يَسْبَحُ", en: "swim", fr: "nager"},
+            {id: 54, ar: "يَقْفِزُ", en: "jump", fr: "sauter"},
+            {id: 55, ar: "يَتَسَلَّقُ", en: "climb", fr: "grimper"},
+            {id: 56, ar: "يَسْقُطُ", en: "fall", fr: "tomber"},
+            {id: 57, ar: "يَنْهَضُ", en: "get up", fr: "se lever"},
+            {id: 58, ar: "يَنْحَنِي", en: "bend", fr: "se pencher"},
+            {id: 59, ar: "يَدُورُ", en: "turn, rotate", fr: "tourner"},
+            {id: 60, ar: "يَتَحَرَّكُ", en: "move", fr: "bouger"},
+            {id: 61, ar: "يَهْدَأُ", en: "calm down", fr: "se calmer"},
+            {id: 62, ar: "يَضْحَكُ", en: "laugh", fr: "rire"},
+            {id: 63, ar: "يَبْكِي", en: "cry", fr: "pleurer"},
+            {id: 64, ar: "يَبْتَسِمُ", en: "smile", fr: "sourire"},
+            {id: 65, ar: "يَغْضَبُ", en: "get angry", fr: "se fâcher"},
+            {id: 66, ar: "يَخَافُ", en: "fear", fr: "avoir peur"},
+            {id: 67, ar: "يَقْلَقُ", en: "worry", fr: "s'inquiéter"},
+            {id: 68, ar: "يَفْرَحُ", en: "rejoice", fr: "se réjouir"},
+            {id: 69, ar: "يَحْزَنُ", en: "be sad", fr: "être triste"},
+            {id: 70, ar: "يَشْعُرُ", en: "feel", fr: "sentir"},
+            {id: 71, ar: "يَأْمُلُ", en: "hope", fr: "espérer"},
+            {id: 72, ar: "يَتَمَنَّى", en: "wish", fr: "souhaiter"},
+            {id: 73, ar: "يَثِقُ", en: "trust", fr: "faire confiance"},
+            {id: 74, ar: "يَشُكُّ", en: "doubt", fr: "douter"},
+            {id: 75, ar: "يُصَدِّقُ", en: "believe", fr: "croire"},
+            {id: 76, ar: "يَكْذِبُ", en: "lie", fr: "mentir"},
+            {id: 77, ar: "يَصْدُقُ", en: "tell the truth", fr: "dire la vérité"},
+            {id: 78, ar: "يَعِدُ", en: "promise", fr: "promettre"},
+            {id: 79, ar: "يَرْفُضُ", en: "refuse", fr: "refuser"},
+            {id: 80, ar: "يَقْبَلُ", en: "accept", fr: "accepter"},
+            {id: 81, ar: "يُوَافِقُ", en: "agree", fr: "être d'accord"},
+            {id: 82, ar: "يُخَالِفُ", en: "disagree", fr: "ne pas être d'accord"},
+            {id: 83, ar: "يَدْعُو", en: "invite", fr: "inviter"},
+            {id: 84, ar: "يُرَحِّبُ", en: "welcome", fr: "accueillir"},
+            {id: 85, ar: "يُوَدِّعُ", en: "say goodbye", fr: "dire au revoir"},
+            {id: 86, ar: "يُهَنِّئُ", en: "congratulate", fr: "féliciter"},
+            {id: 87, ar: "يَشْكُرُ", en: "thank", fr: "remercier"},
+            {id: 88, ar: "يَعْتَذِرُ", en: "apologize", fr: "s'excuser"},
+            {id: 89, ar: "يَسَامِحُ", en: "forgive", fr: "pardonner"},
+            {id: 90, ar: "يَحْتَرِمُ", en: "respect", fr: "respecter"},
+            {id: 91, ar: "يَزُعْجُ", en: "annoy", fr: "agacer"},
+            {id: 92, ar: "يُضَايِقُ", en: "bother", fr: "déranger"},
+            {id: 93, ar: "يُشَجِّعُ", en: "encourage", fr: "encourager"},
+            {id: 94, ar: "يَنْصَحُ", en: "advise", fr: "conseiller"},
+            {id: 95, ar: "يُحَذِّرُ", en: "warn", fr: "avertir"},
+            {id: 96, ar: "يَحْمِي", en: "protect", fr: "protéger"},
+            {id: 97, ar: "يُهَدِّدُ", en: "threaten", fr: "menacer"},
+            {id: 98, ar: "يُنْقِذُ", en: "rescue", fr: "secourir"},
+            {id: 99, ar: "يُسَاعِفُ", en: "give first aid", fr: "donner les premiers secours"},
+            {id: 100, ar: "يُعَالِجُ", en: "treat", fr: "traiter"},
+            {id: 101, ar: "يَمْرَضُ", en: "become ill", fr: "tomber malade"},
+            {id: 102, ar: "يَشْفَى", en: "recover", fr: "guérir"},
+            {id: 103, ar: "يُصَابُ", en: "be injured", fr: "être blessé"},
+            {id: 104, ar: "يَتَأَلَّمُ", en: "suffer pain", fr: "souffrir"},
+            {id: 105, ar: "يَعْطَسُ", en: "sneeze", fr: "éternuer"},
+            {id: 106, ar: "يَسْعُلُ", en: "cough", fr: "tousser"},
+            {id: 107, ar: "يَتَنَفَّسُ", en: "breathe", fr: "respirer"},
+            {id: 108, ar: "يَسْتَرِيحُ", en: "rest", fr: "se reposer"},
+            {id: 109, ar: "يَتْعَبُ", en: "become tired", fr: "se fatiguer"},
+            {id: 110, ar: "يَنْجَحُ", en: "succeed", fr: "réussir"},
+            {id: 111, ar: "يَرْسُبُ", en: "fail (an exam)", fr: "échouer"},
+            {id: 112, ar: "يُحَاوِلُ", en: "try", fr: "essayer"},
+            {id: 113, ar: "يُخْطِئُ", en: "make a mistake", fr: "faire une erreur"},
+            {id: 114, ar: "يُصِيبُ", en: "be correct", fr: "avoir raison"},
+            {id: 115, ar: "يَحُلُّ", en: "solve", fr: "résoudre"},
+            {id: 116, ar: "يُجَرِّبُ", en: "try out", fr: "essayer"},
+            {id: 117, ar: "يُدَرِّبُ", en: "train", fr: "s'entraîner"},
+            {id: 118, ar: "يَتَدَرَّبُ", en: "practice", fr: "pratiquer"},
+            {id: 119, ar: "يُطَوِّرُ", en: "develop", fr: "développer"},
+            {id: 120, ar: "يَتَحَسَّنُ", en: "improve", fr: "améliorer"},
+            {id: 121, ar: "يَسُوءُ", en: "become worse", fr: "empirer"},
+            {id: 122, ar: "يَسْتَعْمِلُ", en: "utilize", fr: "utiliser"},
+            {id: 123, ar: "يُرَتِّبُ", en: "arrange", fr: "arranger"},
+            {id: 124, ar: "يُنَظِّمُ", en: "organize", fr: "organiser"},
+            {id: 125, ar: "يُخَطِّطُ", en: "plan", fr: "planifier"},
+            {id: 126, ar: "يُحَضِّرُ", en: "prepare", fr: "préparer"},
+            {id: 127, ar: "يُؤَجِّلُ", en: "postpone", fr: "reporter"},
+            {id: 128, ar: "يُلْغِي", en: "cancel", fr: "annuler"},
+            {id: 129, ar: "يَحْجُزُ", en: "reserve", fr: "réserver"},
+            {id: 130, ar: "يُسَلِّمُ", en: "deliver", fr: "livrer"},
+            {id: 131, ar: "يَسْتَلِمُ", en: "receive", fr: "recevoir"},
+            {id: 132, ar: "يُرْسِلُ", en: "send", fr: "envoyer"},
+            {id: 133, ar: "يَسْتَقْبِلُ", en: "receive, welcome", fr: "accueillir"},
+            {id: 134, ar: "يَحْفَظُ", en: "memorize", fr: "mémoriser"},
+            {id: 135, ar: "يَنْسَخُ", en: "duplicate", fr: "dupliquer"},
+            {id: 136, ar: "يَحْذَفُ", en: "delete", fr: "supprimer"},
+            {id: 137, ar: "يُضِيفُ", en: "add", fr: "ajouter"},
+            {id: 138, ar: "يُقَلِّلُ", en: "reduce", fr: "réduire"},
+            {id: 139, ar: "يَزِيدُ", en: "increase", fr: "augmenter"},
+            {id: 140, ar: "يُغَادِرُ", en: "leave", fr: "partir"},
+            {id: 141, ar: "يَصِلُ", en: "arrive", fr: "arriver"},
+            {id: 142, ar: "يَعْبُرُ", en: "cross", fr: "traverser"},
+            {id: 143, ar: "يَنْعَطِفُ", en: "turn (direction)", fr: "tourner"},
+            {id: 144, ar: "يَقُودُ بِسُرْعَةٍ", en: "drive fast", fr: "conduire vite"},
+            {id: 145, ar: "يُبْطِئُ", en: "slow down", fr: "ralentir"},
+            {id: 146, ar: "يَتَوَقَّعُ", en: "expect", fr: "s'attendre"},
+            {id: 147, ar: "يُلَاحِظُ", en: "notice", fr: "remarquer"},
+            {id: 148, ar: "يُرَاقِبُ", en: "observe", fr: "observer"},
+            {id: 149, ar: "يَكْتَشِفُ", en: "discover", fr: "découvrir"},
+            {id: 150, ar: "يَخْتَبِرُ", en: "test", fr: "tester"},
+            {id: 151, ar: "يَشْرَحُ", en: "explain", fr: "expliquer"},
+            {id: 152, ar: "يَعْرِضُ", en: "present", fr: "présenter"},
+            {id: 153, ar: "يُنَاقِشُ", en: "discuss", fr: "discuter"},
+            {id: 154, ar: "يُجَادِلُ", en: "argue", fr: "se disputer"},
+            {id: 155, ar: "يَصِفُ", en: "describe", fr: "décrire"},
+            {id: 156, ar: "يُسَمِّي", en: "name", fr: "nommer"},
+            {id: 157, ar: "يَذْكُرُ", en: "mention", fr: "mentionner"},
+            {id: 158, ar: "يُكَرِّرُ", en: "repeat", fr: "répéter"},
+            {id: 159, ar: "يُتَرْجِمُ", en: "translate", fr: "traduire"},
+            {id: 160, ar: "يَنْطِقُ", en: "pronounce", fr: "prononcer"},
+            {id: 161, ar: "يُغَنِّي", en: "sing", fr: "chanter"},
+            {id: 162, ar: "يَرْقُصُ", en: "dance", fr: "danser"},
+            {id: 163, ar: "يَعْزِفُ", en: "play (an instrument)", fr: "jouer"},
+            {id: 164, ar: "يُشَارِكُ", en: "participate", fr: "participer"},
+            {id: 165, ar: "يَحْضُرُ", en: "attend", fr: "assister"},
+            {id: 166, ar: "يَغِيبُ", en: "be absent", fr: "être absent"},
+            {id: 167, ar: "يَسْمَحُ", en: "allow", fr: "permettre"},
+            {id: 168, ar: "يَمْنَعُ", en: "prevent", fr: "empêcher"},
+            {id: 169, ar: "يَطْلُبُ", en: "request", fr: "demander"},
+            {id: 170, ar: "يُقَدِّمُ", en: "offer", fr: "offrir"},
+            {id: 171, ar: "يَسْتَعِيرُ", en: "borrow", fr: "emprunter"},
+            {id: 172, ar: "يُقْرِضُ", en: "lend", fr: "prêter"},
+            {id: 173, ar: "يَدَّخِرُ", en: "save (money)", fr: "économiser"},
+            {id: 174, ar: "يُنْفِقُ", en: "spend (money)", fr: "dépenser"},
+            {id: 175, ar: "يَسْتَحِقُّ", en: "deserve", fr: "mériter"},
+            {id: 176, ar: "يَعْتَمِدُ", en: "depend", fr: "dépendre"},
+            {id: 177, ar: "يَنْجُو", en: "survive", fr: "survivre"},
+            {id: 178, ar: "يَحْدُثُ", en: "happen", fr: "se passer"},
+            {id: 179, ar: "يَظْهَرُ", en: "appear", fr: "apparaître"},
+            {id: 180, ar: "يَخْتَفِي", en: "disappear", fr: "disparaître"}
+        ];
+
+        let filteredData = [...verbsData];
+
+        // Render Table Data
+        function renderTable(data) {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="color: var(--text-muted); font-size: 0.85rem;">${item.id}</td>
+                    <td class="ar-word">${item.ar}</td>
+                    <td><span class="badge-en">${item.en}</span></td>
+                    <td><span class="badge-fr">${item.fr}</span></td>
+                    <td style="text-align: center;">
+                        <button class="action-btn" onclick="speak('${item.ar}')" title="استمع لـ العربية"><i class="fa-solid fa-volume-high"></i></button>
+                        <button class="action-btn" onclick="copyText('${item.ar} - ${item.en} - ${item.fr}')" title="نسخ"><i class="fa-regular fa-copy"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
         }
 
-        function printPage() {
-            window.print();
+        // Render Cards Data
+        function renderCards(data) {
+            const grid = document.getElementById('cardsGrid');
+            grid.innerHTML = '';
+
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'verb-card';
+                card.innerHTML = `
+                    <div class="card-header">
+                        <span class="card-id">#${item.id}</span>
+                        <div>
+                            <button class="action-btn" onclick="speak('${item.ar}')"><i class="fa-solid fa-volume-high"></i></button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="ar-main">${item.ar}</div>
+                        <div class="translations">
+                            <span class="badge-en">${item.en}</span>
+                            <span class="badge-fr">${item.fr}</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="action-btn" onclick="copyText('${item.ar} - ${item.en} - ${item.fr}')" style="width:100%; text-align:center; font-size: 0.85rem;">
+                            <i class="fa-regular fa-copy"></i> نسخ النص
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
         }
+
+        // Filter Functionality
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            filteredData = verbsData.filter(item => 
+                item.ar.includes(query) || 
+                item.en.toLowerCase().includes(query) || 
+                item.fr.toLowerCase().includes(query) ||
+                item.id.toString() === query
+            );
+            
+            document.getElementById('visibleCount').innerText = filteredData.length;
+            renderTable(filteredData);
+            renderCards(filteredData);
+        });
+
+        // Text To Speech
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ar-SA';
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('عذراً، متصفحك لا يدعم القراءة الصوتية.');
+            }
+        }
+
+        // Copy Text
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('تم النسخ للحافظة: ' + text);
+            });
+        }
+
+        // Switch Views
+        function switchView(viewName) {
+            document.querySelectorAll('.view-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.btn-group .btn').forEach(el => el.classList.remove('active'));
+
+            if(viewName === 'table') {
+                document.getElementById('tableView').classList.add('active');
+                event.currentTarget.classList.add('active');
+            } else if(viewName === 'cards') {
+                document.getElementById('cardsView').classList.add('active');
+                event.currentTarget.classList.add('active');
+            } else if(viewName === 'quiz') {
+                document.getElementById('quizView').classList.add('active');
+                event.currentTarget.classList.add('active');
+                generateQuiz();
+            }
+        }
+
+        // Quiz System
+        let currentQuizAnswer = null;
+
+        function generateQuiz() {
+            const feedback = document.getElementById('quizFeedback');
+            const nextBtn = document.getElementById('nextQuizBtn');
+            feedback.innerHTML = '';
+            nextBtn.style.display = 'none';
+
+            // Pick random verb
+            const randomIndex = Math.floor(Math.random() * verbsData.length);
+            const selectedVerb = verbsData[randomIndex];
+            currentQuizAnswer = selectedVerb;
+
+            document.getElementById('quizQuestion').innerText = selectedVerb.ar;
+
+            // Generate Options
+            let options = [selectedVerb];
+            while (options.length < 4) {
+                let option = verbsData[Math.floor(Math.random() * verbsData.length)];
+                if (!options.find(o => o.id === option.id)) {
+                    options.push(option);
+                }
+            }
+
+            // Shuffle Options
+            options.sort(() => Math.random() - 0.5);
+
+            const optionsContainer = document.getElementById('quizOptions');
+            optionsContainer.innerHTML = '';
+
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = 'quiz-btn';
+                btn.innerText = `${opt.en} / ${opt.fr}`;
+                btn.onclick = () => checkQuiz(opt, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkQuiz(selected, btnElement) {
+            const feedback = document.getElementById('quizFeedback');
+            const nextBtn = document.getElementById('nextQuizBtn');
+            const allBtns = document.querySelectorAll('.quiz-btn');
+
+            allBtns.forEach(b => b.disabled = true);
+
+            if (selected.id === currentQuizAnswer.id) {
+                btnElement.style.background = '#22c55e';
+                btnElement.style.color = '#fff';
+                feedback.innerHTML = '<span style="color: #22c55e;"><i class="fa-solid fa-circle-check"></i> إجابة صحيحة! أحسنت.</span>';
+            } else {
+                btnElement.style.background = '#ef4444';
+                btnElement.style.color = '#fff';
+                feedback.innerHTML = `<span style="color: #ef4444;"><i class="fa-solid fa-circle-xmark"></i> إجابة خاطئة. الإجابة الصحيحة هي: ${currentQuizAnswer.en} / ${currentQuizAnswer.fr}</span>`;
+            }
+
+            nextBtn.style.display = 'inline-block';
+        }
+
+        // Dark Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            themeToggle.innerHTML = isDark ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+        });
+
+        // Initial Load
+        renderTable(verbsData);
+        renderCards(verbsData);
     </script>
 </body>
-
 </html>
